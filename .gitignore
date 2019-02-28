@@ -1,0 +1,10 @@
+#ignore build folder
+build/**
+romdl-nx.elf
+romdl-nx.nro
+romdl-nx.nacp
+romdl-nx.pfs0
+romdl-nx.nso
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+.vscode/tasks.json
