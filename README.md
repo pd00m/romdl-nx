@@ -2,7 +2,7 @@
 
 THIS PROGRAM IS NOT IN A USABLE STATE ATM
 
-romdl-nx is a download tool for downloading rom backups directly to the Nintendo Switch console
+romdl-nx is a tool for downloading rom backups directly to the Nintendo Switch console
 
 
 ## Building
