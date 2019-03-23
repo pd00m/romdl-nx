@@ -26,52 +26,18 @@ int main(int argc, char* argv[])
 
   consoleUpdate(NULL);
 
+  while (appletMainLoop()) 
+  {
+    hidScanInput();
+    u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);     
 
-    // Main loop
-    while (appletMainLoop()) 
+    if (kDown & KEY_PLUS)
     {
-        
-      // Scan all the inputs. This should be done once for each frame
-      hidScanInput();
-
-      // hidKeysDown returns information about which buttons have been
-      // just pressed in this frame compared to the previous one
-      u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
-      
-
-      if (kDown & KEY_PLUS)
-      {
-        break; // break in order to return to hbmenu
-      }
-/*          
-      if (kDown & KEY_DUP)
-      {
-        consoleClear();
-        if(entry > 0){
-          --entry;
-        }
-        //std::cout << "Game: " << romList[entry].name << std::endl;
-        //std::cout << "File: "<< romList[entry].reflink << std::endl;
-      }
-          
-      if (kDown & KEY_DDOWN)
-      {
-        consoleClear();
-        if(romList.size() > entry){
-          ++entry;
-        }
-        //std::cout << "Game: " << romList[entry].name << std::endl;
-        //std::cout << "File: "<< romList[entry].reflink << std::endl;
-      }
-*/          
-      // Your code goes here
-
-      // Update the console, sending a new frame to the display
-      consoleUpdate(NULL);
+      break;
     }
+    consoleUpdate(NULL);
+  }
 
-    
-    // Deinitialize and clean up resources used by the console (important!)
-    consoleExit(NULL);
-    return 0;
+  consoleExit(NULL);
+  return 0;
 }

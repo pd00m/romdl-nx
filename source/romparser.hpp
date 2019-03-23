@@ -19,6 +19,7 @@ class RomParser{
         std::string _sys;
         std::string _rawOutput;
         std::vector<romEntry_t> _romList;
+        
 
         static void SearchForRomLinks(GumboNode*, std::vector<romEntry_t>*, std::string);
         
@@ -27,5 +28,5 @@ class RomParser{
 
         RomParser(std::string, std::string);
         std::vector<romEntry_t> SearchRom(std::string);
-        int DownloadRom(romEntry_t);
+        bool DownloadRom(romEntry_t);
 };

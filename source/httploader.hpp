@@ -19,6 +19,7 @@ class HttpLoader {
         
     public:
         HttpLoader(std::string, std::string);
-        static size_t MemoryCallback(void*, size_t , size_t , void*);
-        int Get(std::string&);
+        static size_t MemoryCallback(void *, size_t , size_t , void *);
+        int GetHtml(std::string&);
+        bool GetFile(const char *, const char *);
 };

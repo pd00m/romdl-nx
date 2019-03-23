@@ -6,7 +6,7 @@ RomParser::RomParser(std::string webAddress, std::string sys)
 {
 
   HttpLoader httploader(webAddress, sys);
-  httploader.Get(_rawOutput);
+  httploader.GetHtml(_rawOutput);
   
   GumboOutput* outputNode = gumbo_parse(_rawOutput.c_str());
   SearchForRomLinks(outputNode->root, &_romList, webAddress);
@@ -57,4 +57,9 @@ std::vector<romEntry_t> RomParser::SearchRom(std::string name)
     }
   }
   return searchVector;
+}
+
+bool RomParser::DownloadRom(romEntry_t rom)
+{
+  return false;
 }

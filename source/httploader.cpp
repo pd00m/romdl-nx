@@ -26,7 +26,7 @@ size_t HttpLoader::MemoryCallback(void *contents, size_t size, size_t nmemb, voi
   return realsize;
 }
 
-int HttpLoader::Get(std::string &rawOutput)
+int HttpLoader::GetHtml(std::string &rawOutput)
 {
   const char *url = _webAddress.c_str();
   const char *sys = _sys.c_str();
@@ -67,4 +67,35 @@ int HttpLoader::Get(std::string &rawOutput)
     rawOutput = htmlStr;
   }
   return 0;
+}
+
+bool HttpLoader::GetFile(const char *url, const char *file)
+{
+  CURL *curl = curl_easy_init();
+  FILE *destFile = NULL;
+  CURLcode res;
+
+  destFile = fopen(file, "wb");
+
+  if(destFile == NULL)
+  {
+    return false;
+  }
+
+  if(curl) 
+  {
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);
+    curl_easy_setopt(curl, CURLOPT_URL, url);   
+	  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L); 			
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, destFile);
+
+    res = curl_easy_perform(curl);
+    fclose(destFile);
+
+    if (res == CURLE_OK) {
+		  return true;
+    }
+  }
+    return false;
 }
